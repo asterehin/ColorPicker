@@ -10,8 +10,8 @@ android {
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 31
-        versionCode 8
-        versionName "2.3"
+        versionCode 80
+        versionName "2.3-andter"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
@@ -63,14 +63,14 @@ ext {
     siteUrl = 'https://github.com/Dhaval2404/ColorPicker/'
     gitUrl = 'https://github.com/Dhaval2404/ColorPicker.git'
 
-    libraryVersion = '2.3'
+    libraryVersion = '2.3-andter'
     //If you are uploading new library try : gradlew install
     //If you are updating existing library then execute: gradlew bintrayUpload
     //In both the case don't forgot to put bintray credentials in local.properties file.
 
-    developerId = 'dhaval2404'
-    developerName = 'Dhaval Patel'
-    developerEmail = 'dhavalpatel244@gmail.com'
+    developerId = 'asterehin'
+    developerName = 'Andrey Terehin'
+    developerEmail = 'a.s.terehin@gmail.com'
 
     licenseName = 'The Apache Software License, Version 2.0'
     licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'

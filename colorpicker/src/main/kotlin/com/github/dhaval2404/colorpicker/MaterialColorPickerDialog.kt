@@ -4,8 +4,10 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import androidx.annotation.ColorRes
+import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.github.dhaval2404.colorpicker.adapter.MaterialColorPickerAdapter
@@ -35,7 +37,9 @@ class MaterialColorPickerDialog private constructor(
     val colorSwatch: ColorSwatch,
     var colorShape: ColorShape,
     val colors: List<String>? = null,
-    var isTickColorPerCard: Boolean = false
+    var isTickColorPerCard: Boolean = false,
+    val positiveButtonIcon: Int,
+    val negativeButtonIcon: Int
 ) {
 
     class Builder(val context: Context) {
@@ -50,6 +54,8 @@ class MaterialColorPickerDialog private constructor(
         private var colorShape: ColorShape = ColorShape.CIRCLE
         private var colors: List<String>? = null
         private var isTickColorPerCard: Boolean = false
+        private var positiveButtonIcon: Int = R.drawable.ic_outline_check_circle_24
+        private var negativeButtonIcon: Int = R.drawable.ic_outline_cancel_24
 
         /**
          * Set Dialog Title
@@ -108,6 +114,27 @@ class MaterialColorPickerDialog private constructor(
          */
         fun setNegativeButton(@StringRes text: Int): Builder {
             this.negativeButton = context.getString(text)
+            return this
+        }
+
+
+        /**
+         * Set Positive Button Icon
+         *
+         * @param drawableId DrawableRes
+         */
+        fun setPositiveButtonIcon(@DrawableRes drawableId: Int): Builder {
+            this.positiveButtonIcon = drawableId
+            return this
+        }
+
+        /**
+         * Set Negative Button Icon
+         *
+         * @param text DrawableRes
+         */
+        fun setNegativeButtonIcon(@DrawableRes drawableId: Int): Builder {
+            this.negativeButtonIcon = drawableId
             return this
         }
 
@@ -278,7 +305,9 @@ class MaterialColorPickerDialog private constructor(
                 colorShape = colorShape,
                 colorSwatch = colorSwatch,
                 colors = colors,
-                isTickColorPerCard = isTickColorPerCard
+                isTickColorPerCard = isTickColorPerCard,
+                negativeButtonIcon = negativeButtonIcon,
+                positiveButtonIcon = positiveButtonIcon
             )
         }
 
@@ -348,6 +377,11 @@ class MaterialColorPickerDialog private constructor(
             dialog.setOnDismissListener {
                 listener.onDismiss()
             }
+        }
+
+        with(dialog){
+            setPositiveButtonIcon(AppCompatResources.getDrawable(context, positiveButtonIcon))
+            setNegativeButtonIcon(AppCompatResources.getDrawable(context, negativeButtonIcon))
         }
 
         // Create AlertDialog

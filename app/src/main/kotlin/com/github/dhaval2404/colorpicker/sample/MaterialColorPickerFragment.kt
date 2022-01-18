@@ -65,6 +65,9 @@ class MaterialColorPickerFragment : Fragment() {
                         setButtonBackground(materialDialogPickerCircleBtn, color)
                     }
                 })
+
+                .setPositiveButtonIcon(R.drawable.ic_outline_check_circle_24)
+                .setNegativeButtonIcon(R.drawable.ic_outline_cancel_24)
                 .setDismissListener {
                     Log.d("MaterialDialogPicker", "Handle dismiss event")
                 }
